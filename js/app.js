@@ -8,9 +8,9 @@ const loadCatagory = () => {
 
 const displayCategory = (catagories) => {
     // console.log(catagories);
+    const categoryContainer = document.getElementById('category-container');
     catagories.forEach(catagory => {
         // console.log(catagory);
-        const categoryContainer = document.getElementById('category-container');
         const catDiv = document.createElement('div');
         catDiv.classList.add('container-fluid');
         catDiv.innerHTML = `        
@@ -32,31 +32,56 @@ const loadCategoryDetail = (catagoryId) => {
     // .catch(error => console.log(error))
 }
 
-// Diplay category detail
+// Display category detail
 
 const displayCategoryDetail = (datas) => {
     // console.log(datas);
+    const categoryDetailContainer = document.getElementById('category-detail-container');
+    categoryDetailContainer.innerHTML = ``;
+
     datas.forEach(data => {
         console.log(data);
-        const categoryDetailContainer = document.getElementById('category-detail-container');
-        categoryDetailContainer.innerHTML = `
-                    <div class=" card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="..." class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                        additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
+        const detailDiv = document.createElement('div');
+        detailDiv.innerHTML = `
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                    <img src="${data.thumbnail_url}" class="img-fluid ms-5 rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${data.title}</h5>
+                            <p class="card-text">${data.details.slice(0, 300)}...</p>                          
+                            <div class="d-flex justify-content-between pt-5">
+                                <p class="card-text"><small class="text-muted"><span> <img id="author-img" src="${data.author.img}" class="rounded-circle" alt="..."> </span>Author: ${data.author.name}</small></p>
+                                <p class="card-text"><small class="text-muted">Views: ${data.total_view}</p>
+                                <button onclick="loadModal('${data._id}')" type="button" class="btn btn-info">Details</button>
                             </div>
                         </div>
                     </div>
-        `;
+                </div>
+            </div>
+            `;
+        categoryDetailContainer.appendChild(detailDiv);
     })
+
+}
+
+// load category modal
+
+const loadModal = (modalId) => {
+    const url = `https://openapi.programming-hero.com/api/news/${modalId}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayModal(data.data[0]))
+    // .catch(error => console.log(error))
+}
+
+const displayModal = (data) => {
+    console.log(data);
+
 }
 
 loadCatagory();
+
+// ms-5 
