@@ -53,9 +53,11 @@ const displayCategoryDetail = (datas) => {
                             <h5 class="card-title">${data.title}</h5>
                             <p class="card-text">${data.details.slice(0, 300)}...</p>                          
                             <div class="d-flex justify-content-between pt-5">
-                                <p class="card-text"><small class="text-muted"><span> <img id="author-img" src="${data.author.img}" class="rounded-circle" alt="..."> </span>Author: ${data.author.name}</small></p>
-                                <p class="card-text"><small class="text-muted">Views: ${data.total_view}</p>
-                                <button onclick="loadModal('${data._id}')" type="button" class="btn btn-info">Details</button>
+                                <p class="card-text"><small class="text-muted"><span> <img id="author-img" src="${data.author.img}" class="rounded-circle" alt="..."> </span>Author: ${data.author.name ? data.author.name : 'No data found'}</small></p>
+                                
+                                <p class="card-text"><small class="text-muted">Views: ${data.total_view ? data.total_view : 'No data found'}</p>
+                                <button onclick="loadModal('${data._id}')" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#newsModal">Details</button>
+                                                            
                             </div>
                         </div>
                     </div>
@@ -79,7 +81,16 @@ const loadModal = (modalId) => {
 
 const displayModal = (data) => {
     console.log(data);
-
+    const modalDetails = document.getElementById('modal-details');
+    modalDetails.innerHTML = `
+    <h5>${data.title}</h5>
+    <h6>Author name: ${data.author.name}</h6>
+    <p>Published date: ${data.author.published_date}</p>
+    <img src="${data.author.img}" class="rounded-circle w-25 h-auto" alt="...">
+    <p><strong>News details: </strong> ${data.details}</p>
+    <img src="${data.image_url}" class="img-fluid" alt="...">
+    <p class="fst-italic"><small>Total views: ${data.total_view ? data.total_view : 'No data found'}</small></p>
+    `
 }
 
 loadCatagory();
