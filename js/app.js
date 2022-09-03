@@ -3,7 +3,7 @@ const loadCatagory = () => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayCategory(data.data.news_category))
-    // .catch(error => console.log(error))
+        .catch(error => console.log(error))
 }
 
 const displayCategory = (catagories) => {
@@ -20,10 +20,7 @@ const displayCategory = (catagories) => {
         `;
         categoryContainer.appendChild(catDiv);
     })
-
 }
-
-
 
 // load category details 
 
@@ -32,7 +29,7 @@ const loadCategoryDetail = (catagoryId) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayCategoryDetail(data.data))
-    // .catch(error => console.log(error))
+        .catch(error => console.log(error))
 
     // start loader
     const newsSpinner = document.getElementById('loader');
@@ -98,7 +95,7 @@ const loadModal = (modalId) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayModal(data.data[0]))
-    // .catch(error => console.log(error))
+        .catch(error => console.log(error))
 }
 
 // display category modal
