@@ -36,6 +36,9 @@ const loadCategoryDetail = (catagoryId) => {
     newsSpinner.classList.remove('d-none');
 }
 
+// display default news
+loadCategoryDetail('08');
+
 // Display category detail
 
 const displayCategoryDetail = (datas) => {
@@ -122,5 +125,3 @@ const displayModal = (data) => {
 }
 
 loadCatagory();
-
-// ms-5 
