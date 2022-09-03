@@ -55,23 +55,15 @@ const displayCategoryDetail = (datas) => {
     }
 
     // Sort by most views
-
-    // homes.sort((a, b) => b.price - a.price);
-    // homes.forEach((c) => {
-    //     console.log(`${c.price}`);
-    // });
-
     datas.sort((a, b) => b.total_view - a.total_view)
-    datas.map((c) => {
-        // console.log(`${c.total_view}`);
-        return `${c.total_view}`;
-    })
+
 
     const categoryDetailContainer = document.getElementById('category-detail-container');
     categoryDetailContainer.innerHTML = ``;
 
     datas.forEach(data => {
         // console.log(data);
+
         const detailDiv = document.createElement('div');
         detailDiv.innerHTML = `
             <div class="card mb-3">
