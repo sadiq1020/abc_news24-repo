@@ -40,6 +40,8 @@ const loadCategoryDetail = (catagoryId) => {
 
 const displayCategoryDetail = (datas) => {
     console.log(datas);
+
+    // Total item message
     const totalItemMessage = document.getElementById('item-total-message');
     if (datas.length > 0) {
         totalItemMessage.innerHTML = `
@@ -51,6 +53,19 @@ const displayCategoryDetail = (datas) => {
         <p class="text-danger">No item found</p>
         `;
     }
+
+    // Sort by most views
+
+    // homes.sort((a, b) => b.price - a.price);
+    // homes.forEach((c) => {
+    //     console.log(`${c.price}`);
+    // });
+
+    datas.sort((a, b) => b.total_view - a.total_view)
+    datas.map((c) => {
+        // console.log(`${c.total_view}`);
+        return `${c.total_view}`;
+    })
 
     const categoryDetailContainer = document.getElementById('category-detail-container');
     categoryDetailContainer.innerHTML = ``;
