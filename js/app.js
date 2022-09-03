@@ -55,7 +55,7 @@ const displayCategoryDetail = (datas) => {
     }
 
     // Sort by most views
-    datas.sort((a, b) => b.total_view - a.total_view)
+    datas.sort((a, b) => b.total_view - a.total_view);
 
 
     const categoryDetailContainer = document.getElementById('category-detail-container');
