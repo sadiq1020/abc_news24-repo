@@ -1,3 +1,4 @@
+// load category
 const loadCatagory = () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`;
     fetch(url)
@@ -6,6 +7,7 @@ const loadCatagory = () => {
         .catch(error => console.log(error))
 }
 
+// display category
 const displayCategory = (catagories) => {
     const categoryContainer = document.getElementById('category-container');
     catagories.forEach(catagory => {
@@ -21,7 +23,6 @@ const displayCategory = (catagories) => {
 }
 
 // load category details 
-
 const loadCategoryDetail = (catagoryId) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${catagoryId}`;
     fetch(url)
@@ -38,7 +39,6 @@ const loadCategoryDetail = (catagoryId) => {
 loadCategoryDetail('08');
 
 // Display category detail
-
 const displayCategoryDetail = (datas) => {
 
     // Total item message
@@ -92,7 +92,6 @@ const displayCategoryDetail = (datas) => {
 }
 
 // load category modal
-
 const loadModal = (modalId) => {
     const url = `https://openapi.programming-hero.com/api/news/${modalId}`;
     fetch(url)
@@ -102,7 +101,6 @@ const loadModal = (modalId) => {
 }
 
 // display category modal
-
 const displayModal = (data) => {
     console.log(data);
     const modalDetails = document.getElementById('modal-details');
