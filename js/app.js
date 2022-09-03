@@ -7,10 +7,8 @@ const loadCatagory = () => {
 }
 
 const displayCategory = (catagories) => {
-    // console.log(catagories);
     const categoryContainer = document.getElementById('category-container');
     catagories.forEach(catagory => {
-        // console.log(catagory);
         const catDiv = document.createElement('div');
         catDiv.classList.add('container-fluid');
         catDiv.innerHTML = `        
@@ -42,7 +40,6 @@ loadCategoryDetail('08');
 // Display category detail
 
 const displayCategoryDetail = (datas) => {
-    console.log(datas);
 
     // Total item message
     const totalItemMessage = document.getElementById('item-total-message');
@@ -53,20 +50,17 @@ const displayCategoryDetail = (datas) => {
     }
     else {
         totalItemMessage.innerHTML = `
-        <p class="text-danger">No item found</p>
+        <p class="text-danger">No item found!</p>
         `;
     }
 
     // Sort by most views
     datas.sort((a, b) => b.total_view - a.total_view);
 
-
     const categoryDetailContainer = document.getElementById('category-detail-container');
     categoryDetailContainer.innerHTML = ``;
 
     datas.forEach(data => {
-        // console.log(data);
-
         const detailDiv = document.createElement('div');
         detailDiv.innerHTML = `
             <div class="card mb-3">
@@ -79,9 +73,8 @@ const displayCategoryDetail = (datas) => {
                             <h5 class="card-title">${data.title}</h5>
                             <p class="card-text">${data.details.slice(0, 300)}...</p>                          
                             <div class="d-flex justify-content-between pt-5">
-                                <p class="card-text"><small class="text-muted"><span> <img id="author-img" src="${data.author.img}" class="rounded-circle" alt="..."> </span>Author: ${data.author.name ? data.author.name : 'No data found'}</small></p>
-                                
-                                <p class="card-text"><small class="text-muted">Views: ${data.total_view ? data.total_view : 'No data found'}</p>
+                                <p class="card-text"><small class="text-muted"><span> <img id="author-img" src="${data.author.img}" class="rounded-circle" alt="..."> </span>Author: ${data.author.name ? data.author.name : 'No data found'}</small></p>                               
+                                <p class="card-text"><small class="text-muted"><i class="fa-regular fa-eye"></i> Views: ${data.total_view ? data.total_view : 'No data found'}</p>
                                 <button onclick="loadModal('${data._id}')" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#newsModal">Details</button>
                             </div>
                         </div>
@@ -115,7 +108,7 @@ const displayModal = (data) => {
     const modalDetails = document.getElementById('modal-details');
     modalDetails.innerHTML = `
     <h5>${data.title}</h5>
-    <h6>Author name: ${data.author.name}</h6>
+    <h6>Author name: ${data.author.name ? data.author.name : 'No data found'}</h6>
     <p>Published date: ${data.author.published_date}</p>
     <img src="${data.author.img}" class="rounded-circle w-25 h-auto" alt="...">
     <p><strong>News details: </strong> ${data.details}</p>
