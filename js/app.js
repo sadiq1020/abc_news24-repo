@@ -20,7 +20,10 @@ const displayCategory = (catagories) => {
         `;
         categoryContainer.appendChild(catDiv);
     })
+
 }
+
+
 
 // load category details 
 
@@ -30,6 +33,10 @@ const loadCategoryDetail = (catagoryId) => {
         .then(res => res.json())
         .then(data => displayCategoryDetail(data.data))
     // .catch(error => console.log(error))
+
+    // start loader
+    const newsSpinner = document.getElementById('loader');
+    newsSpinner.classList.remove('d-none');
 }
 
 // Display category detail
@@ -38,6 +45,8 @@ const displayCategoryDetail = (datas) => {
     // console.log(datas);
     const categoryDetailContainer = document.getElementById('category-detail-container');
     categoryDetailContainer.innerHTML = ``;
+
+
 
     datas.forEach(data => {
         console.log(data);
@@ -57,7 +66,6 @@ const displayCategoryDetail = (datas) => {
                                 
                                 <p class="card-text"><small class="text-muted">Views: ${data.total_view ? data.total_view : 'No data found'}</p>
                                 <button onclick="loadModal('${data._id}')" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#newsModal">Details</button>
-                                                            
                             </div>
                         </div>
                     </div>
@@ -66,7 +74,9 @@ const displayCategoryDetail = (datas) => {
             `;
         categoryDetailContainer.appendChild(detailDiv);
     })
-
+    // stop loader 
+    const newsSpinner = document.getElementById('loader');
+    newsSpinner.classList.add('d-none');
 }
 
 // load category modal
