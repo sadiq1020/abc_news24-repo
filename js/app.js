@@ -42,14 +42,24 @@ const loadCategoryDetail = (catagoryId) => {
 // Display category detail
 
 const displayCategoryDetail = (datas) => {
-    // console.log(datas);
+    console.log(datas);
+    const totalItemMessage = document.getElementById('item-total-message');
+    if (datas.length > 0) {
+        totalItemMessage.innerHTML = `
+        <p class="text-success">${datas.length} items found in this category </p>
+        `;
+    }
+    else {
+        totalItemMessage.innerHTML = `
+        <p class="text-danger">No item found</p>
+        `;
+    }
+
     const categoryDetailContainer = document.getElementById('category-detail-container');
     categoryDetailContainer.innerHTML = ``;
 
-
-
     datas.forEach(data => {
-        console.log(data);
+        // console.log(data);
         const detailDiv = document.createElement('div');
         detailDiv.innerHTML = `
             <div class="card mb-3">
@@ -74,9 +84,11 @@ const displayCategoryDetail = (datas) => {
             `;
         categoryDetailContainer.appendChild(detailDiv);
     })
+
     // stop loader 
     const newsSpinner = document.getElementById('loader');
     newsSpinner.classList.add('d-none');
+
 }
 
 // load category modal
@@ -88,6 +100,8 @@ const loadModal = (modalId) => {
         .then(data => displayModal(data.data[0]))
     // .catch(error => console.log(error))
 }
+
+// display category modal
 
 const displayModal = (data) => {
     console.log(data);
