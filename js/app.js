@@ -60,6 +60,7 @@ const displayCategoryDetail = (datas) => {
     const categoryDetailContainer = document.getElementById('category-detail-container');
     categoryDetailContainer.innerHTML = ``;
 
+    // dynamic category details
     datas.forEach(data => {
         const detailDiv = document.createElement('div');
         detailDiv.innerHTML = `
