@@ -33,10 +33,14 @@ const loadCategoryDetail = (catagoryId) => {
     // start loader
     const newsSpinner = document.getElementById('loader');
     newsSpinner.classList.remove('d-none');
+
+    // Emptying result
+    const categoryDetailContainer = document.getElementById('category-detail-container');
+    categoryDetailContainer.innerHTML = ``;
 }
 
 // display default news
-loadCategoryDetail('08');
+loadCategoryDetail('01');
 
 // Display category detail
 const displayCategoryDetail = (datas) => {
@@ -58,7 +62,6 @@ const displayCategoryDetail = (datas) => {
     datas.sort((a, b) => b.total_view - a.total_view);
 
     const categoryDetailContainer = document.getElementById('category-detail-container');
-    categoryDetailContainer.innerHTML = ``;
 
     // dynamic category details
     datas.forEach(data => {
